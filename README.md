@@ -4,7 +4,7 @@
 
 > 📖 웹에서 보기: https://jam-bang.github.io/inflearn-claude-guide/
 >
-> **한 줄 요약** — Claude 데스크톱 앱에서 새 작업을 열고 [`PROMPT.md`](PROMPT.md)를 붙여 넣은 뒤, Claude가 요청할 때 **로그인·git push·API 키 입력**만 직접 하면 됩니다.
+> **한 줄 요약** — Claude 데스크톱 앱에서 새 작업을 열고 [`PROMPT.md`](PROMPT.md)를 붙여 넣은 뒤, Claude가 요청할 때 **로그인·권한 승인·API 키 입력**만 직접 하면 됩니다.
 
 ---
 
@@ -26,7 +26,7 @@
 | 필수 | **Claude 데스크톱 앱** (Windows/Mac) | 앱 안의 브라우저로 인프런을 조작합니다 |
 | 필수 | 인프런 비즈니스 계정 | 로그인은 본인이 직접 합니다 |
 | 미션용 | 내 컴퓨터의 작업 폴더 (예: `C:\Users\내계정\workspace`) | Claude 앱에서 이 폴더를 연결합니다 |
-| 미션용 | Git, GitHub 계정 | push와 GitHub 로그인은 본인이 직접 합니다 |
+| 미션용 | Git, GitHub 계정 | GitHub 로그인은 본인이 직접 합니다 |
 | 미션용 | Node.js 20 이상 | 웹 프로젝트 미션에 필요 |
 | 배포 미션 | Vercel, Supabase, Notion 계정 | 해당 미션에서만 필요 (모두 GitHub 계정으로 가입 가능) |
 
@@ -41,7 +41,7 @@ flowchart TD
     C --> D[Claude: 미수강 퀴즈·미션·수업 목록 표로 보고]
     D --> E[퀴즈 자동 풀이]
     D --> F[미션 수행 → 커밋]
-    F --> G[git push - 직접]
+    F --> G[git push - Claude 또는 직접]
     G --> H[Claude: 답안 입력 → 확인 후 제출]
     E --> I[최종 결과 정리]
     H --> I
@@ -118,14 +118,18 @@ Claude가 섹션별 퀴즈를 하나씩 엽니다. 진행 순서는 이렇습니
 
    ![GitHub 새 저장소 만들기](docs/images/07-github-new-repo.jpg)
 
-4. Claude가 알려주는 명령으로 **직접 push** 합니다.
+4. 커밋한 내용을 GitHub에 올립니다(push). 방법은 두 가지입니다.
+   - **Claude가 직접 push:** Claude가 저장소를 작업에 연결하겠다고 하면 승인 창에서 **승인**하세요. 이후 push는 Claude가 합니다.
+   - **내가 직접 push:** 연결할 수 없는 환경이면 Claude가 알려주는 명령을 터미널에서 실행합니다.
 
-   ```bash
-   cd C:\Users\내계정\workspace\<프로젝트 폴더>
-   git push origin main
-   ```
+     ```bash
+     cd C:\Users\내계정\workspace\<프로젝트 폴더>
+     git push origin main
+     ```
 
-5. push가 끝났다고 알려주면 Claude가 GitHub에 반영됐는지 확인하고, 인프런 **작성하기** 창에 답안을 입력해 둡니다.
+   > 💡 Claude가 push하면 내 컴퓨터의 폴더는 GitHub보다 뒤처질 수 있습니다. 직접 고치기 전에 `git pull` 을 먼저 하세요.
+
+5. push가 끝나면 Claude가 GitHub에 반영됐는지 확인하고, 인프런 **작성하기** 창에 답안을 입력해 둡니다.
 6. 내용을 확인한 뒤 "제출해줘"라고 하면 Claude가 **미션 제출**을 누릅니다.
 
 ![미션 제출 완료 화면](docs/images/06-mission-submitted.jpg)
@@ -156,7 +160,7 @@ Claude는 계정·보안과 관련된 아래 작업을 대신하지 않습니다
 |------|------|
 | 인프런·GitHub·Vercel·Supabase·Notion **로그인** | 계정 비밀번호 |
 | OAuth 승인, GitHub 앱 설치 | 계정 권한 부여 |
-| `git push` | Claude 작업 환경에는 GitHub 로그인 정보가 없음 |
+| GitHub 저장소 연결 **승인** (안 되면 `git push` 직접) | 저장소 쓰기 권한 부여 |
 | API 키·토큰 **값** 입력 | 비밀 값 |
 | 계정 보안 설정(2단계 인증 등) | 본인 판단 필요 |
 
@@ -183,5 +187,5 @@ Claude는 계정·보안과 관련된 아래 작업을 대신하지 않습니다
 
 - **학습이 목적입니다.** 퀴즈는 결과 화면의 *전체 문항 보기*로 해설을 꼭 확인하고, 잠긴 퀴즈를 풀려고 연 강의는 따로 시청하세요.
 - Claude가 열기만 해서 완료 처리된 수업은 실제로 시청한 것이 아닙니다.
-- **비밀 값은 커밋하지 마세요.** `.env.local` 이 `.gitignore` 에 들어 있는지 Claude가 확인하지만, push 전에 한 번 더 보세요.
+- **비밀 값은 커밋하지 마세요.** `.env.local` 이 `.gitignore` 에 들어 있는지 Claude가 확인하지만, push 전에 한 번 더 보세요. Claude가 push할 때도 올릴 파일 목록을 먼저 확인해 달라고 하세요.
 - 미션 제출·저장소 생성·배포처럼 되돌리기 어려운 작업은 Claude가 실행 전에 물어봅니다. 내용을 확인한 뒤 진행하세요.
