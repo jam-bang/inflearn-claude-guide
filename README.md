@@ -1,7 +1,6 @@
 # 인프런 강의 미수강 항목, Claude에게 맡기기
 
-인프런(비즈니스) 강의에서 **아직 안 푼 퀴즈, 제출 안 한 미션, 미수강 수업**을 Claude가 찾아서 처리하도록 하는 방법을 정리한 사용 설명서입니다.
-「클로드 코드 완벽 마스터」 강의의 미션 23개와 섹션 퀴즈 26개를 실제로 이 방법으로 끝내면서 정리했습니다.
+인프런(비즈니스) 강의에서 **풀지 않은 퀴즈, 제출하지 않은 미션, 수강하지 않은 수업**을 Claude가 찾아 처리하도록 하는 방법을 안내합니다.
 
 > 📖 웹에서 보기: https://jam-bang.github.io/inflearn-claude-guide/
 >
@@ -91,7 +90,7 @@ Claude가 강의 대시보드에서 진도율을 확인하고, 미수강 항목�
 
 ![학습 페이지 커리큘럼 패널](docs/images/03-learning-curriculum-panel.jpg)
 
-> 💡 Claude는 페이지 구조를 직접 읽어서 **167개 수업을 섹션을 펼치지 않고 한 번에** 점검합니다. 놓친 글(텍스트) 수업까지 찾아냅니다.
+> 💡 Claude는 페이지 구조를 직접 읽어 **섹션을 펼치지 않고도 전체 수업을 한 번에** 점검합니다. 놓치기 쉬운 글(텍스트) 수업도 찾아냅니다.
 
 ### 5단계. 퀴즈 풀이
 
@@ -142,12 +141,6 @@ Claude가 섹션별 퀴즈를 하나씩 엽니다. 진행 순서는 이렇습니
 | Notion | 개발자 도구 → **연결** → **신규 연결** → 인증 방법 **API 토큰** 으로 만들고, 토큰을 `.env.local` 에 붙여넣기 |
 | Vercel | GitHub로 로그인 → **Adjust GitHub App Permissions** 에서 저장소 허용 → 환경 변수 **값** 입력 → Deploy |
 | Supabase | GitHub로 로그인 → Project Settings → **API Keys** 의 Publishable key 를 Vercel 환경 변수에 붙여넣기 |
-
-결과물 예시:
-
-| Notion CMS 기술 문서 포탈 | Supabase 이벤트 관리 앱 |
-|---|---|
-| ![Notion 포탈](docs/images/08-result-notion-portal.jpg) | ![Event Hub](docs/images/09-result-event-hub.jpg) |
 
 ### 8단계. 결과 확인
 
